@@ -6,37 +6,56 @@ Created on Mon Mar 22 12:40:25 2021
 @author: pipo
 """
 import numpy as np
+import random
 
-n_cartas = int(input("Cuantas cartas quieres jugar? "))
-lista1 = []
-lista2 = []
-for i in range(n_cartas):
+n_cards = int(input("Cuantas cartas quieres jugar? "))
+p_player1 = 0
+p_player2 = 0
+player = 1  
+list1 = []
+random.shuffle(list1)
+
+for i in range(n_cards):
     n = i+1
-    lista1.append(n)
-    lista2.append(n)
+    list1.append(n)
+    list1.append(n)
+    
+random.shuffle(list1)
 
-longitudTablero = n_cartas #ancho por alto del tablero
-tablero = []    
+lengthBoard = n_cards #ancho por alto del tablero
+board = []    
 
-def crear_tablero():
-    for i in range(longitudTablero):
-        linea = []
-        for j in range(longitudTablero):
-            linea.append("*")        
-        tablero.append(linea)     
+def create_board():
+    for i in range(2): #se usa 2, para que así funcione el tablero
+        line = []
+        for j in range(lengthBoard):
+            line.append((i,j))        
+        board.append(line)     
         
-def imprimir_tablero():
-    for i in tablero:   #for para lineas
+def print_board():
+    for i in board:   #for para lineas
         for j in i:   #for para columnas
             print(j, end=" ")
         print()  #cambiar de linea
     print()
-            
+
+def change_player(player):
+    if player == 1:
+        player = 2
+    else:
+        player = 1
+
+def points(p):
+    p += 1
+    
+    
+
     
     
     
     
     
+  
     
-crear_tablero()
-imprimir_tablero()
+create_board()
+print_board()
