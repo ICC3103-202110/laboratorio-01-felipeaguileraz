@@ -39,16 +39,8 @@ def print_board():
         print()  #cambiar de linea
     print()
 
-def change_player(player):
-    if player == 1:
-        player = 2
-    else:
-        player = 1
 
-def points(p):
-    p += 1
-    
-    
+      
 game = 0
 create_board()
 print_board()
@@ -61,7 +53,7 @@ for i in range (2):
             number_matrix[i].append(list1[nm])
             nm = nm+1
     
-if game == 0:  #ciclo en el cual se esta jugando el juego
+while game == 0:  #ciclo en el cual se esta jugando el juego
     print("Turno del jugador: ", player)
     turn1 = 0
     turn2 = 0
@@ -70,6 +62,45 @@ if game == 0:  #ciclo en el cual se esta jugando el juego
         x1 = int(input("coordenada x del numero: "))
         turn1 = 1
     print("Tu numero es: ", number_matrix[y1][x1])
+    
+    board[y1][x1] = number_matrix[y1][x1]  #imprime la matriz con el numero obtenido
+    for i in board:
+        for j in i:
+          print(j, end=" ")  
+        print()
+    
+    if turn2 == 0:
+        y2 = int(input("coordenada y del segundo numero: "))
+        x2 = int(input("coordenada x del segundo numero: "))
+        turn2 = 1
+    print("Tu segundo numero es: ", number_matrix[y2][x2])
+    
+    board[y2][x2] = number_matrix[y2][x2]
+    for i in board:
+        for j in i:
+          print(j, end=" ")  
+        print()
+    
+    if number_matrix[y1][x1] == number_matrix[y2][x2]:  #corrobora que el jugador haya sacado el mismo numero
+        print()
+        print("Ganaste un punto")
+        print()
+        if player == 1:
+           p_player1 += 1
+        else:
+            p_player2 += 1
+    else:
+        print()
+        board[y1][x1] = (y1,x1)  #llena el tablero con la tupla de las coordenadas que escogio el jugador
+        board[y2][x2] = (y2,x2)
+        print_board()
+        if player == 1:
+            player = 2
+        else:
+            player = 1
+    
+        
+
     
     
     
